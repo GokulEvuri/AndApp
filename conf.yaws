@@ -1,0 +1,7 @@
+<erl>
+
+out(A) ->
+       {ehtml, "hello"}.
+
+</erl>
+
