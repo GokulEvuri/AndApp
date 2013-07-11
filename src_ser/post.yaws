@@ -15,18 +15,25 @@
 %% Return this object from construct_JSON/1 method 
 
    out(_A)->
-    {html, json:encode({struct,[{variable,<<"test">>},{v,"ok"}]})}.
+    {html, json:encode(construct_JSON())}.
 
-construct_JSON()->
-	Address1 = [{<<"StreetAddress">>, <<"21 2nd Street">>}, {<<"City">>, <<"New York">>},{<<"State">>, <<"NY">>},{<<"PostalCode">>, <<"10021">> }],
-	
-    	Item1 = [{"price", "23.89"},{<<"Distance">>, <<"6.00">>},{<<"StoreName">>, <<"23.89">>}, {<<"Address">>, Address1}], 
+    
+%% Trail 	{struct,[{variable,<<"test">>},{v,"ok"}]}.
+construct_JSON()-> 
+		{struct, [{<<"StreetAddress">>, <<"21 2nd Street">>}, {<<"City">>, <<"New York">>},{<<"State">>, <<"NY">>},{<<"PostalCode">>, {struct,[{"ha","he"},{"hu","hay"}]} }]}.
 
-    	Address2 = [{<<"StreetAddress">>, <<"21 2nd Street">>}, {<<"City">>, <<"New York">>},{<<"State">>, <<"NY">>},{<<"PostalCode">>, <<"10021">> }],
 
-    	Item2 = [{<<"Price">>, <<"23.89">>},{<<"Distance">>, <<"6.00">>},{<<"StoreName">>, <<"23.89">>}, {<<"Address">>, Address2}], 
 
-    [{items, [Item1, Item2]}].
+%construct_JSON()->
+%	Address1 = [{<<"StreetAddress">>, <<"21 2nd Street">>}, {<<"City">>, <<"New York">>},{<<"State">>, <<"NY">>},{<<"PostalCode">>, <<"10021">> }],
+%	
+%    	Item1 = [{"price", "23.89"},{<<"Distance">>, <<"6.00">>},{<<"StoreName">>, <<"23.89">>}, {<<"Address">>, Address1}], 
+%
+%   	Address2 = [{<<"StreetAddress">>, <<"21 2nd Street">>}, {<<"City">>, <<"New York">>},{<<"State">>, <<"NY">>},{<<"PostalCode">>, <<"10021">> }],
+%
+%    	Item2 = [{<<"Price">>, <<"23.89">>},{<<"Distance">>, <<"6.00">>},{<<"StoreName">>, <<"23.89">>}, {<<"Address">>, Address2}], 
+%
+%    [{items, [Item1, Item2]}].
     
 </erl>
 
