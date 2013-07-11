@@ -10,30 +10,31 @@
 %%     -> Adress
 %%     -> Phone Number
 
-%% TODO (Now)
-%% Create readable struct for JSON objects
-%% Return this object from construct_JSON/1 method 
+%% TODO (Now) [DONE]
+%% Create readable struct for JSON objects [DONE]
+%% Return this object from construct_JSON/1 method [DONE] 
 
    out(_A)->
     {html, json:encode(construct_JSON())}.
 
     
 %% Trail 	{struct,[{variable,<<"test">>},{v,"ok"}]}.
-construct_JSON()-> 
-		{struct, [{<<"StreetAddress">>, <<"21 2nd Street">>}, {<<"City">>, <<"New York">>},{<<"State">>, <<"NY">>},{<<"PostalCode">>, {struct,[{"ha","he"},{"hu","hay"}]} }]}.
+%% Working nested object {struct, [{<<"StreetAddress">>, <<"21 2nd Street">>}, {<<"City">>, <<"New York">>},{<<"State">>, <<"NY">>},{<<"PostalCode">>, {struct,[{"ha","he"},{"hu","hay"}]} }]}.
+
+%construct_JSON()-> 
+%		{struct, [{<<"StreetAddress">>, <<"21 2nd Street">>}, {<<"City">>, <<"New York">>},{<<"State">>, <<"NY">>},{<<"PostalCode">>, {struct,[{<<"StreetAddress">>, <<"21 2nd S%treet">>}, {<<"City">>, <<"New York">>},{<<"State">>, <<"NY">>},{<<"PostalCode">>, <<"10021">> }]} }]}.
 
 
+construct_JSON()->
+	Address1 = [{<<"StreetAddress">>, <<"21 2nd Street">>}, {<<"City">>, <<"New York">>},{<<"State">>, <<"NY">>},{<<"PostalCode">>, <<"10021">> }],
+	
+    	Item1 = {struct, [{"price", "23.89"},{<<"Distance">>, <<"6.00">>},{<<"StoreName">>, <<"23.89">>}, {<<"Address">>, {struct, Address1}} ] }, 
 
-%construct_JSON()->
-%	Address1 = [{<<"StreetAddress">>, <<"21 2nd Street">>}, {<<"City">>, <<"New York">>},{<<"State">>, <<"NY">>},{<<"PostalCode">>, <<"10021">> }],
-%	
-%    	Item1 = [{"price", "23.89"},{<<"Distance">>, <<"6.00">>},{<<"StoreName">>, <<"23.89">>}, {<<"Address">>, Address1}], 
-%
-%   	Address2 = [{<<"StreetAddress">>, <<"21 2nd Street">>}, {<<"City">>, <<"New York">>},{<<"State">>, <<"NY">>},{<<"PostalCode">>, <<"10021">> }],
-%
-%    	Item2 = [{<<"Price">>, <<"23.89">>},{<<"Distance">>, <<"6.00">>},{<<"StoreName">>, <<"23.89">>}, {<<"Address">>, Address2}], 
-%
-%    [{items, [Item1, Item2]}].
+   	Address2 = [{<<"StreetAddress">>, <<"21 2nd Street">>}, {<<"City">>, <<"New York">>},{<<"State">>, <<"NY">>},{<<"PostalCode">>, <<"10021">> }],
+
+    	Item2 = {struct, [{<<"Price">>, <<"23.89">>},{<<"Distance">>, <<"6.00">>},{<<"StoreName">>, <<"23.89">>}, {<<"Address">>,{struct, Address2}} ]}, 
+
+ 	{struct,[{"items",Item1},{"items",Item2}]}.
     
 </erl>
 
