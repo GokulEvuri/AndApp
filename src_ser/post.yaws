@@ -1,0 +1,20 @@
+<erl>
+   out(_A)->
+    {html, json:encode({struct,[{variable,<<"test">>},{v,"ok"}]})}.
+
+construct_JSON()->
+	Address1 = [{<<"StreetAddress">>, <<"21 2nd Street">>}, {<<"City">>, <<"New York">>},{<<"State">>, <<"NY">>},{<<"PostalCode">>, <<"10021">> }],
+	
+    	Item1 = [{"price", "23.89"},{<<"Distance">>, <<"6.00">>},{<<"StoreName">>, <<"23.89">>}, {<<"Address">>, Address1}], 
+
+    	Address2 = [{<<"StreetAddress">>, <<"21 2nd Street">>}, {<<"City">>, <<"New York">>},{<<"State">>, <<"NY">>},{<<"PostalCode">>, <<"10021">> }],
+
+    	Item2 = [{<<"Price">>, <<"23.89">>},{<<"Distance">>, <<"6.00">>},{<<"StoreName">>, <<"23.89">>}, {<<"Address">>, Address2}], 
+
+    [{items, [Item1, Item2]}].
+    
+</erl>
+
+
+
+
