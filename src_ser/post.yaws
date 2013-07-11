@@ -1,4 +1,19 @@
+
+
 <erl>
+%% TODO Prototype 1
+%% Get lat and long, return a parent JSON object with 5 child JSON objects
+%% JSON object model
+%%     -> Price
+%%     -> Distance
+%%     -> StoreName
+%%     -> Adress
+%%     -> Phone Number
+
+%% TODO (Now)
+%% Create readable struct for JSON objects
+%% Return this object from construct_JSON/1 method 
+
    out(_A)->
     {html, json:encode({struct,[{variable,<<"test">>},{v,"ok"}]})}.
 
