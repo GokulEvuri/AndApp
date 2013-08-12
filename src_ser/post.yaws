@@ -1,0 +1,43 @@
+
+
+<erl>
+%% TODO Prototype 1
+%% Get lat and long, return a parent JSON object with 5 child JSON objects
+%% JSON object model
+%%     -> Price
+%%     -> Distance
+%%     -> StoreName
+%%     -> Adress
+%%     -> Phone Number
+
+%% TODO (Now) [DONE]
+%% Create readable struct for JSON objects [DONE]
+%% Return this object from construct_JSON/1 method [DONE] 
+
+   out(_A)->
+    {html, json:encode(construct_JSON())}.
+
+    
+%% Trail 	{struct,[{variable,<<"test">>},{v,"ok"}]}.
+%% Working nested object {struct, [{<<"StreetAddress">>, <<"21 2nd Street">>}, {<<"City">>, <<"New York">>},{<<"State">>, <<"NY">>},{<<"PostalCode">>, {struct,[{"ha","he"},{"hu","hay"}]} }]}.
+
+%construct_JSON()-> 
+%		{struct, [{<<"StreetAddress">>, <<"21 2nd Street">>}, {<<"City">>, <<"New York">>},{<<"State">>, <<"NY">>},{<<"PostalCode">>, {struct,[{<<"StreetAddress">>, <<"21 2nd S%treet">>}, {<<"City">>, <<"New York">>},{<<"State">>, <<"NY">>},{<<"PostalCode">>, <<"10021">> }]} }]}.
+
+
+construct_JSON()->
+	Address1 = [{<<"StreetAddress">>, <<"21 2nd Street">>}, {<<"City">>, <<"New York">>},{<<"State">>, <<"NY">>},{<<"PostalCode">>, <<"10021">> }],
+	
+    	Item1 = {struct, [{"price", "23.89"},{<<"Distance">>, <<"6.00">>},{<<"StoreName">>, <<"23.89">>}, {<<"Address">>, {struct, Address1}} ] }, 
+
+   	Address2 = [{<<"StreetAddress">>, <<"21 2nd Street">>}, {<<"City">>, <<"New York">>},{<<"State">>, <<"NY">>},{<<"PostalCode">>, <<"10021">> }],
+
+    	Item2 = {struct, [{<<"Price">>, <<"23.89">>},{<<"Distance">>, <<"6.00">>},{<<"StoreName">>, <<"23.89">>}, {<<"Address">>,{struct, Address2}} ]}, 
+
+ 	{struct,[{"items",Item1},{"items",Item2}]}.
+    
+</erl>
+
+
+
+
