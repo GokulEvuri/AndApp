@@ -5,9 +5,11 @@
 %%  Create methods to handel the protocols [in progress]
 %% 
 %% ToDo(Priority level 2)
-%%  Adapt OTP behaviour 
+%%  Adapt OTP behaviour
 
 -module(db_server).
+
+-define(USER_SERVICE,user_service).
 
 -compile(export_all).
 
@@ -25,6 +27,7 @@ loop()->
     receive
 	{stop,user} ->
 	    ok;
-	_ ->
+	{user_query,{Pid,Data}} ->
+	    spawn(?USER_SERVICE,handle_userQuery,[{Pid,Data}]),
 	    loop()
     end.
