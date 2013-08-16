@@ -4,7 +4,7 @@
 -include("/usr/local/lib/yaws/include/yaws_api.hrl").
 
 %% todo Prototype 1
-%% Get lat and long, return a parent JSON object with 5 child JSON objects
+%% Get lat and long, return a parent JSON object with 5 child JSON objects [Done]
 %% JSON object model
 %%     -> Price
 %%     -> Distance
@@ -13,17 +13,14 @@
 %%     -> Phone Number
     
 out(A)->
-%%     List = yaws_api:parse_post(A), 
-%%     Latitude = proplists:get_value("latitude",List,"undefined"),   
-%%     Longitude = proplists:get_value("longitude",List,"undefined"),   
-   %% Item = proplists:get_value("item",List,"undefined"),
+
     AppModData = A#arg.appmoddata,
     PrePath = A#arg.appmod_prepath,
     QueryData = A#arg.querydata,
     {Latitude,Longitude} = get_position(QueryData),
     case is_float(Latitude) of
 	true ->
-	    io:format("~p~n ~p~n ~p~n",[Latitude,Longitude,QueryData]);
+	    io:format("~n~p~n ~p~n ~p~n",[Latitude,Longitude,QueryData]);
 	false-> 
 	    io:format("Oh crap"),
 	    io:format("~p~n ~p~n ~p~n",[Latitude,Longitude,QueryData])
@@ -44,7 +41,7 @@ construct_JSON()->
 
 get_position(QueryData)->
     {Tail, Latitude} = get_latitude(QueryData),
-    {Latitude , get_longitude(Tail)}.
+    {list_to_float(Latitude) , list_to_float(get_longitude(Tail))}.
 
 
 get_latitude([108,97,116,105,116,117,100,101,61|Tail])->
@@ -68,4 +65,3 @@ get_longitude([],List)->
     lists:reverse(List);
 get_longitude([Num|Tail],List) ->
     get_longitude(Tail,[Num|List]).
-
