@@ -25,7 +25,8 @@ out(A)->
 	true ->
 	    io:format("~p~n ~p~n ~p~n",[Latitude,Longitude,QueryData]);
 	false-> 
-	    io:format("Oh crap")
+	    io:format("Oh crap"),
+	    io:format("~p~n ~p~n ~p~n",[Latitude,Longitude,QueryData])
 	end,
     {html, json:encode(construct_JSON())}.
 
@@ -42,10 +43,29 @@ construct_JSON()->
 
 
 get_position(QueryData)->
-    {get_latitude(QueryData),get_longitude(QueryData)}.
+    {Tail, Latitude} = get_latitude(QueryData),
+    {Latitude , get_longitude(Tail)}.
 
 
-get_latitude(_)->
-    0.0.
-get_longitude(_) ->
-    0.0.
+get_latitude([108,97,116,105,116,117,100,101,61|Tail])->
+    {Tail,get_latitude(Tail,[])}.
+
+get_latitude([38|_Tail],List)->
+    lists:reverse(List);
+get_latitude([Num|Tail],List) ->
+    get_latitude(Tail,[Num|List]).
+
+
+
+get_longitude([61|Tail]) ->
+    get_longitude(Tail,[]);
+get_longitude([38|Tail]) ->
+    get_longitude(Tail);
+get_longitude([_|Tail]) ->
+    get_longitude(Tail).
+
+get_longitude([],List)->
+    lists:reverse(List);
+get_longitude([Num|Tail],List) ->
+    get_longitude(Tail,[Num|List]).
+
