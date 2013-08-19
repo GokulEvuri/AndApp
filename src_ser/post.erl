@@ -27,14 +27,9 @@ out(A)->
 	    io:format("Oh crap"),
 	    io:format("~p~n ~p~n ~p~n",[Latitude,Longitude,QueryData])
 	end,
-    {html, json:encode(construct_JSON())}.
+    {html, json2:encode(construct_JSON())}.
 
-construct_JSON()->
-	Address1 = [{<<"StreetAddress">>, <<"21 2nd Street">>}, {<<"City">>, <<"New York">>},{<<"State">>, <<"NY">>},{<<"PostalCode">>, <<"10021">> }],	
-    	Item1 = {struct, [{"price", "23.89"},{<<"Distance">>, <<"6.00">>},{<<"StoreName">>, <<"23.89">>}, {<<"Address">>, {struct, Address1}} ] },
-   	Address2 = [{<<"StreetAddress">>, <<"21 2nd Street">>}, {<<"City">>, <<"New York">>},{<<"State">>, <<"NY">>},{<<"PostalCode">>, <<"10021">> }],
-    	Item2 = {struct, [{<<"Price">>, <<"23.89">>},{<<"Distance">>, <<"6.00">>},{<<"StoreName">>, <<"23.89">>}, {<<"Address">>,{struct, Address2}} ]}, 
- 	{struct,[{"items",Item1},{"items",Item2}]}.
+
 
 get_position(QueryData)->
     {Tail, Latitude} = get_latitude(QueryData),
@@ -59,3 +54,12 @@ get_longitude([],List)->
     lists:reverse(List);
 get_longitude([Num|Tail],List) ->
     get_longitude(Tail,[Num|List]).
+
+construct_JSON()->
+    
+    Address1 = [{<<"StreetAddress">>, <<"21 2nd Street">>}, {<<"City">>, <<"New York">>},{<<"State">>, <<"NY">>},{<<"PostalCode">>, <<"10021">> }],
+    Item1 = {struct, [{"ItemName","Estella Potato Chips"},{"price", "23.89"},{<<"Distance">>, <<"6.00">>},{<<"StoreName">>, <<"23.89">>}, {<<"Address">>, {struct, Address1}} ] },
+    Address2 = [{<<"StreetAddress">>, <<"21 2nd Street">>}, {<<"City">>, <<"New York">>},{<<"State">>, <<"NY">>},{<<"PostalCode">>, <<"10021">> }],
+    Item2 = {struct, [{"ItemName", "OLW Chips"},{<<"Price">>, <<"23.89">>},{<<"Distance">>, <<"6.00">>},{<<"StoreName">>, <<"23.89">>}, {<<"Address">>,{struct, Address2}} ]},
+     
+    {array,[Item1,Item2]}.
