@@ -3,6 +3,8 @@
 
 -include("/usr/local/lib/yaws/include/yaws_api.hrl").
 
+%% Query on client browser http://192.168.1.4/req?latitude=2.0&longitude=7.1
+
 %% todo Prototype 1
 %% Get lat and long, return a parent JSON object with 5 child JSON objects [Done]
 %% JSON object model
@@ -28,21 +30,15 @@ out(A)->
     {html, json:encode(construct_JSON())}.
 
 construct_JSON()->
-	Address1 = [{<<"StreetAddress">>, <<"21 2nd Street">>}, {<<"City">>, <<"New York">>},{<<"State">>, <<"NY">>},{<<"PostalCode">>, <<"10021">> }],
-	
-    	Item1 = {struct, [{"price", "23.89"},{<<"Distance">>, <<"6.00">>},{<<"StoreName">>, <<"23.89">>}, {<<"Address">>, {struct, Address1}} ] }, 
-
+	Address1 = [{<<"StreetAddress">>, <<"21 2nd Street">>}, {<<"City">>, <<"New York">>},{<<"State">>, <<"NY">>},{<<"PostalCode">>, <<"10021">> }],	
+    	Item1 = {struct, [{"price", "23.89"},{<<"Distance">>, <<"6.00">>},{<<"StoreName">>, <<"23.89">>}, {<<"Address">>, {struct, Address1}} ] },
    	Address2 = [{<<"StreetAddress">>, <<"21 2nd Street">>}, {<<"City">>, <<"New York">>},{<<"State">>, <<"NY">>},{<<"PostalCode">>, <<"10021">> }],
-
     	Item2 = {struct, [{<<"Price">>, <<"23.89">>},{<<"Distance">>, <<"6.00">>},{<<"StoreName">>, <<"23.89">>}, {<<"Address">>,{struct, Address2}} ]}, 
-
  	{struct,[{"items",Item1},{"items",Item2}]}.
-
 
 get_position(QueryData)->
     {Tail, Latitude} = get_latitude(QueryData),
     {list_to_float(Latitude) , list_to_float(get_longitude(Tail))}.
-
 
 get_latitude([108,97,116,105,116,117,100,101,61|Tail])->
     {Tail,get_latitude(Tail,[])}.
@@ -51,8 +47,6 @@ get_latitude([38|_Tail],List)->
     lists:reverse(List);
 get_latitude([Num|Tail],List) ->
     get_latitude(Tail,[Num|List]).
-
-
 
 get_longitude([61|Tail]) ->
     get_longitude(Tail,[]);
