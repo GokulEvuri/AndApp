@@ -3,6 +3,7 @@
 
 -include("/usr/local/lib/yaws/include/yaws_api.hrl").
 
+%% Last check Ip 31.209.18.75
 %% Query on client browser http://192.168.1.4/req?latitude=2.0&longitude=7.1
 
 %% todo Prototype 1
@@ -33,9 +34,9 @@ out(A)->
 
 construct_JSON()->
     
-    Address1 = [{<<"StreetAddress">>, <<"21 2nd Street">>}, {<<"City">>, <<"New York">>},{<<"State">>, <<"NY">>},{<<"PostalCode">>, <<"10021">> },{"Contact","+46738928328"}],
+    Address1 = [{<<"StreetAddress">>, <<"21 2nd Street">>}, {<<"City">>, <<"New York">>},{<<"State">>, <<"NY">>},{<<"PostalCode">>, <<"10021">> },{"Contact","+46738928328"},{"OpeningTimes","11:00-20:00"}],
     Item1 = {struct, [{"ItemName","Estella Potato Chips"},{"price", "23.89"},{<<"Distance">>, <<"6.00">>},{<<"StoreName">>, <<"23.89">>}, {<<"Address">>, {struct, Address1}} ] },
-    Address2 = [{<<"StreetAddress">>, <<"21 2nd Street">>}, {<<"City">>, <<"New York">>},{<<"State">>, <<"NY">>},{<<"PostalCode">>, <<"10021">> },{"Contact","+46738928379"}],
+    Address2 = [{<<"StreetAddress">>, <<"21 2nd Street">>}, {<<"City">>, <<"New York">>},{<<"State">>, <<"NY">>},{<<"PostalCode">>, <<"10021">> },{"Contact","+46738928379"},{"OpeningTimes","11:00-20:00"}],
     Item2 = {struct, [{"ItemName", "OLW Chips"},{<<"Price">>, <<"23.89">>},{<<"Distance">>, <<"6.00">>},{<<"StoreName">>, <<"23.89">>}, {<<"Address">>,{struct, Address2}} ]},
      
     {array,[Item1,Item2]}.
