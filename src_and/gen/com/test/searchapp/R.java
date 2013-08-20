@@ -174,20 +174,30 @@ containing a value of this type.
     public static final class id {
         public static final int hybrid=0x7f050004;
         public static final int map=0x7f050005;
-        public static final int menu_settings=0x7f05000a;
+        public static final int menu_settings=0x7f050012;
         public static final int none=0x7f050000;
         public static final int normal=0x7f050001;
+        public static final int res_distance=0x7f050007;
+        public static final int res_name=0x7f050006;
+        public static final int res_phone=0x7f05000b;
+        public static final int res_price=0x7f050009;
+        public static final int res_store_name=0x7f050008;
+        public static final int res_timings=0x7f05000a;
+        public static final int results_table=0x7f05000c;
         public static final int satellite=0x7f050002;
-        public static final int sc_text=0x7f050006;
+        public static final int sc_text=0x7f05000d;
         public static final int terrain=0x7f050003;
-        public static final int test_button=0x7f050008;
-        public static final int test_search_field=0x7f050007;
-        public static final int test_table=0x7f050009;
+        public static final int test_button=0x7f05000f;
+        public static final int test_cats=0x7f050010;
+        public static final int test_search_field=0x7f05000e;
+        public static final int test_table=0x7f050011;
     }
     public static final class layout {
         public static final int fragment_code=0x7f030000;
-        public static final int search_cell=0x7f030001;
-        public static final int search_page=0x7f030002;
+        public static final int result_cell=0x7f030001;
+        public static final int result_page=0x7f030002;
+        public static final int search_cell=0x7f030003;
+        public static final int search_page=0x7f030004;
     }
     public static final class menu {
         public static final int search_page=0x7f080000;

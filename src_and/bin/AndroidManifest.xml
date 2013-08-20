@@ -39,6 +39,10 @@
             android:value="AIzaSyAmLOeo2Wwel8ZeIEaGG-wwjh-GQOVCdd8" />
             
         </activity>
+        
+        <activity android:name=".SearchResults"
+            android:screenOrientation="portrait"></activity>
+        
     </application>
     
 </manifest>
