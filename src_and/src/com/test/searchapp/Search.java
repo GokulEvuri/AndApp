@@ -8,9 +8,11 @@ import org.json.JSONException;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -19,7 +21,10 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.ImageView.ScaleType;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,6 +38,8 @@ public class Search extends FragmentActivity {
 	//private GoogleMap map;
 	ListView searchTable;
 	EditText searchField;
+	ImageView bg;
+	RelativeLayout searchBox;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +75,15 @@ public class Search extends FragmentActivity {
 		connect = (Button) findViewById(R.id.test_button);
 		categories = (Button) findViewById(R.id.test_cats);
 		searchTable = (ListView) findViewById(R.id.test_table);
+		bg = (ImageView) findViewById(R.id.test_bg);
+		searchBox = (RelativeLayout) findViewById(R.id.search_box);
+		searchField = (EditText) findViewById(R.id.test_search_field);
+		
+		searchBox.setBackgroundColor(Color.parseColor("#bbffffff"));
+		
+		bg.setScaleType(ScaleType.CENTER_CROP);
+		
+		bg.setImageDrawable(getResources().getDrawable(R.drawable.map));
 	}
 	
 	public void handleConnect(){
@@ -147,6 +163,11 @@ public class Search extends FragmentActivity {
 		
 		if(!results.isEmpty()){
 			Intent intent = new Intent(Search.this, SearchResults.class);
+			
+			//if(!TextUtils.isEmpty(searchField.getText())){
+				intent.putExtra("search_string", searchField.getText().toString());
+			//}
+			
 			intent.putExtra("search_results", results);
 			startActivity(intent);
 		}

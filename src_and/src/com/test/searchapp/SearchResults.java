@@ -2,17 +2,17 @@ package com.test.searchapp;
 
 import java.util.ArrayList;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.ImageView.ScaleType;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -21,6 +21,8 @@ public class SearchResults extends Activity {
 	ListView resultTable;
 	ArrayList<SearchResult> results;
 	ResultsAdapter adapter;
+	ImageView bg;
+	EditText searchField;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +38,13 @@ public class SearchResults extends Activity {
 	public void handleAll(){
 		adapter = new ResultsAdapter();
 		resultTable = (ListView) findViewById(R.id.results_table);
+		bg = (ImageView) findViewById(R.id.result_bg);
+		searchField = (EditText) findViewById(R.id.res_search_field);
+		bg.setScaleType(ScaleType.CENTER_CROP);
+		
+		
+		searchField.setText(this.getIntent().getStringExtra("search_string"));
+		bg.setImageDrawable(getResources().getDrawable(R.drawable.map));
 		if(!results.isEmpty()){
 			resultTable.setAdapter(adapter);
 		}
@@ -94,7 +103,23 @@ public class SearchResults extends Activity {
 			timings.setText(item.timings);
 			phNumbers.setText(item.phoneNumber);
 			
+			SetLayout.setTextColours("#ffffff", name, storeName, distance, timings, price, phNumbers);
+			
+			handleTouch(convertView);
+			
 			return convertView;
+		}
+		
+		public void handleTouch(View convertView){
+			convertView.setOnClickListener(new View.OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					// TODO Auto-generated method stub
+					Intent intent = new Intent(SearchResults.this, MapActivity.class);
+					startActivity(intent);
+				}
+			});
 		}
 		
 	}

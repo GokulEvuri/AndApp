@@ -1,5 +1,6 @@
 package com.test.searchapp;
 
+import android.graphics.Color;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.ViewGroup;
@@ -169,11 +170,14 @@ public class SetLayout {
     	i.setLayoutParams(params);
 	}
 	
-	
-	
-	
-	
-	
+	public static void setTextColours(String color, TextView... t){
+		
+		for(TextView txt: t){
+			txt.setTextColor(Color.parseColor(color));
+		}
+		
+	}
+
 	public static void setImageLayout(ImageView i, int h, int w)
 	{
 		if(h != 0)		i.getLayoutParams().height=h;

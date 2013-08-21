@@ -1,14 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+     >
 
+    <ImageView 
+        android:id="@+id/result_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="@string/app_name"
+        />
+    
+    <RelativeLayout 
+        android:id = "@+id/results_box"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:background="#99000000"
+        >
+        
+        <EditText
+        android:id="@+id/res_search_field"
+        android:layout_width="400dp"
+        android:layout_height="60dp"
+        android:text = "Search here.."
+        android:textSize="20sp"
+        android:textColor="#ffffff"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="0dp"
+        
+         />
+    
+    <Button
+        android:id="@+id/res_search"
+        android:layout_width="70dp"
+        android:layout_height="40dp"
+        android:textSize="15sp"
+        android:text = "Search"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="0dp"
+        android:layout_toRightOf="@+id/res_search_field"
+         />
+    
+    <Button
+        android:id="@+id/res_sort"
+        android:layout_width="50dp"
+        android:layout_height="40dp"
+        android:textSize="15sp"
+        android:text = "Sort"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="0dp"
+        android:layout_marginLeft="8sp"
+        android:layout_toRightOf="@+id/res_search"
+         />
+        
+    </RelativeLayout>
+    
     <ListView
         android:id="@+id/results_table"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="100dp"
         android:layout_alignParentTop="true"
+        android:divider="#000000"
+        android:dividerHeight="3dp"
          />
 
 </RelativeLayout>
