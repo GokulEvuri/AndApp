@@ -5,5 +5,6 @@
 	<classpathentry kind="src" path="gen"/>
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.DEPENDENCIES"/>
+	<classpathentry kind="lib" path="/Users/navid/Documents/private_projects/AndApp/src_and/libs/apache-mime4j-0.6.jar"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>

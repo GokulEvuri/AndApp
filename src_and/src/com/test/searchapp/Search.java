@@ -12,7 +12,6 @@ import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -93,10 +92,14 @@ public class Search extends FragmentActivity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				
-				GetResponse get = new GetResponse();
+				//GetResponse get = new GetResponse();
 				
-				get.execute();
+				//get.execute();
 				
+				Intent share = new Intent(Search.this, FacebookHandler.class);
+				
+				share.putExtra("login", true);
+				Search.this.startActivity(share);
 			}
 		});
 	}
