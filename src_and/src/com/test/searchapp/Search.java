@@ -92,14 +92,16 @@ public class Search extends FragmentActivity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				
-				//GetResponse get = new GetResponse();
+				Log.d("RBUTTON", "clicked");
 				
-				//get.execute();
+				GetResponse get = new GetResponse();
 				
-				Intent share = new Intent(Search.this, FacebookHandler.class);
+				get.execute();
 				
-				share.putExtra("login", true);
-				Search.this.startActivity(share);
+				//Intent share = new Intent(Search.this, FacebookHandler.class);
+				
+				//share.putExtra("login", true);
+				//Search.this.startActivity(share);
 			}
 		});
 	}
